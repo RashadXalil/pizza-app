@@ -1,0 +1,29 @@
+.active {
+  display: block;
+}
+.custom__header {
+  display: flex;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 20px;
+  justify-content: space-between;
+}
+.custom__header__right__logined {
+  display: none;
+}
+.custom__header__link {
+  color: black;
+  margin-right: 20px;
+  text-decoration: none;
+  transition: 0.3s linear;
+}
+.custom__header__link:hover {
+  color: #fcbe00;
+}
+img {
+  width: 100px;
+}
+
+.custom__header__right {
+  display: flex;
+  align-items: center;
+}
