@@ -7,25 +7,59 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useForm } from "react-hook-form";
-
+// import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
+import axios from "axios";
 const theme = createTheme();
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
 
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const data = new FormData(event.currentTarget);
-//     console.log({
-//       email: data.get("email"),
-//       password: data.get("password"),
-//     });
-//   };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function changeEmail(event) {
+    // const data = new FormData(event.currentTarget);
+
+    setEmail(event.target.value);
+  }
+
+  function changePassword(event) {
+    setPassword(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const regex =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    console.log(regex.test(email));
+
+    if (regex.test(email)) {
+      axios.post("localhost:8080", { email, password });
+    }
+    // const data = new FormData(event.currentTarget);
+
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
+
+    // setLoginForm({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
+    console.log(email, password);
+  };
+
+  useEffect(() => {
+    console.log(email, password);
+  }, [email, password]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -58,6 +92,7 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => changeEmail(e)}
             />
             <TextField
               margin="normal"
@@ -68,6 +103,7 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => changePassword(e)}
             />
             <Button
               type="submit"
