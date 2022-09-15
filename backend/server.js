@@ -36,7 +36,8 @@ app.get('/', (req, res) => {
   res.send(users)
 })
 app.post('/login', (req, res) => {
-  console.log(res)
+  let user = new user()
+  users.push(user)
 })
 app.listen(8080, () => {
   console.log('Server running on 8080')
