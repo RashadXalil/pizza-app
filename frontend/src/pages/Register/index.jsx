@@ -49,7 +49,11 @@ function Register() {
             password: password,
           },
         })
-        .then((res) => console.log(res))
+        .then((res) => {
+          if (res.status === 200) {
+            alert('user created')
+          }
+        })
 
       console.log(name, surname, email, password)
     } else {
