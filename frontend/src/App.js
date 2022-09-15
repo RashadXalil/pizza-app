@@ -1,5 +1,7 @@
+import {Register} from './pages/Register/index'
+
 function App() {
-  return <div className="App">hello world</div>
+  return <Register/>
 }
 
 export default App
