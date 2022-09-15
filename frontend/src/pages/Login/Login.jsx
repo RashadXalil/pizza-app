@@ -41,8 +41,31 @@ export default function Login() {
     console.log(regex.test(email));
 
     if (regex.test(email)) {
-      axios.post("localhost:8080", { email, password });
+      axios
+        .post("https://localhost:8080/login", {
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+          data: {
+            email: email,
+            password: password,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) alert("Login Success");
+        })
+        .catch((err) => console.log(err));
     }
+    //   const requestOptions = {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ email: email, password: password }),
+    //   };
+
+    //   fetch("https://localhost:8080/login", requestOptions)
+    //     .then((response) => response.json())
+    //     .then((data) => console.log(data));
+    // }
     // const data = new FormData(event.currentTarget);
 
     // console.log({
@@ -79,7 +102,6 @@ export default function Login() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -106,9 +128,10 @@ export default function Login() {
               onChange={(e) => changePassword(e)}
             />
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
+              onSubmit={(e)=>handleSubmit(e)}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
