@@ -13,13 +13,13 @@ const index = () => {
         </div>
       </div>
       <div className="custom__header__right">
-        <div className="custom__header__right__logined">
+        <div className="active custom__header__right__logined">
           <span>UserName UserSurname</span>
           <Link className="custom__header__link" to="/logout">
             Log Out
           </Link>
         </div>
-        <div className="custom__header__right__notlogined">
+        <div className="  custom__header__right__notlogined">
           <Link className="custom__header__link" to="/login">
             Login
           </Link>

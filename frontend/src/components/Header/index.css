@@ -1,5 +1,5 @@
 .active {
-  display: block;
+  display: block !important;
 }
 .custom__header {
   display: flex;
@@ -8,6 +8,9 @@
   justify-content: space-between;
 }
 .custom__header__right__logined {
+  display: none;
+}
+.custom__header__right__notlogined {
   display: none;
 }
 .custom__header__link {
@@ -26,4 +29,7 @@ img {
 .custom__header__right {
   display: flex;
   align-items: center;
+}
+span {
+  margin-right: 20px;
 }
