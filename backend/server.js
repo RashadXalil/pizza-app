@@ -6,15 +6,14 @@ const users = [
   {
     id: 1,
     name: 'Rashad',
-    surname: 'Xalilov',
     email: 'rashadmkh@code.edu.az',
     password: 'rashad123',
+    isLogined: false,
   },
 ]
 class User {
-  constructor(name, surname, email, password, confirmPassword) {
-    ;(this.name = name), (this.surname = surname), (this.email = email)
-    confirmPassword(confirmPassword, password)
+  constructor(name, email, password) {
+    ;(this.name = name), (this.email = email), (this.password = password)
   }
   confirmEmail(email) {
     if (users.any((x) => x.email === email)) {
@@ -32,9 +31,22 @@ app.get('/', (req, res) => {
 })
 app.post('/login', (req, res) => {
   console.log(req.body)
+  if (
+    users.any(
+      (x) => x.email === req.body.email && x.password === req.body.password,
+    )
+  ) {
+    res.send('logined')
+  }
 })
 app.post('/register', (req, res) => {
-  console.log(req.body)
+  console.log(req.body.data)
+  let name = req.body.data.name
+  let email = req.body.data.email
+  let password = req.body.data.password
+  let user = new User(name, email, password)
+  users.push(user)
+  res.sendStatus(200)
 })
 app.listen(8080, () => {
   console.log('Server running on 8080')
