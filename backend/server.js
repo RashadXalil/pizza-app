@@ -23,11 +23,6 @@ class User {
     }
     alert('Email alreay exist !')
   }
-  confirmPassword(password, confirmPassword) {
-    if (confirmPassword === password) {
-      this.password = password
-    }
-  }
 }
 app.use(cors())
 app.use(express.json())
@@ -36,8 +31,10 @@ app.get('/', (req, res) => {
   res.send(users)
 })
 app.post('/login', (req, res) => {
-  let user = new user()
-  users.push(user)
+  console.log(req.body)
+})
+app.post('/register', (req, res) => {
+  console.log(req.body)
 })
 app.listen(8080, () => {
   console.log('Server running on 8080')
