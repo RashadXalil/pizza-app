@@ -13,7 +13,7 @@ const users = [
 ]
 class User {
   constructor(name, surname, email, password, confirmPassword) {
-    ;(this.name = name), (this.surname = surname), (this.email = email)
+    ; (this.name = name), (this.surname = surname), (this.email = email)
     confirmPassword(confirmPassword, password)
   }
   confirmEmail(email) {
@@ -36,7 +36,8 @@ app.get('/', (req, res) => {
   res.send(users)
 })
 app.post('/login', (req, res) => {
-  let user = new user()
+  console.log(req.body)
+  let user = new User() 
   users.push(user)
 })
 app.listen(8080, () => {
